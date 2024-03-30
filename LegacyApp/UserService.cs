@@ -6,6 +6,18 @@ namespace LegacyApp
     {
         public bool AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId)
         {
+            if (CheckNameAndSurname(firstName, lastName) && CheckEmail(email) && ValidateAge(CalculateAge(dateOfBirth)))
+            {
+                var user = new User(ClientRepository.GetById(clientId), dateOfBirth, email, firstName, lastName);
+                if (user.CheckCreditLimit())
+                {
+                    UserDataAccess.AddUser(user);
+                    return true;
+                }
+            }
+
+            return false;
+            
             CheckNameAndSurname(firstName, lastName);
             // if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
             // {
@@ -34,7 +46,9 @@ namespace LegacyApp
 
             // var client = ClientRepository.GetById(clientId);
 
-            var user = new User(ClientRepository.GetById(clientId), dateOfBirth, email, firstName, lastName);
+            // var user = new User(ClientRepository.GetById(clientId), dateOfBirth, email, firstName, lastName);
+            
+            
             // {
             //     Client = client,
             //     DateOfBirth = dateOfBirth,
@@ -66,14 +80,14 @@ namespace LegacyApp
             //     }
             // }
 
-            user.CheckCreditLimit();
+            // user.CheckCreditLimit();
 
             // if (user.HasCreditLimit && user.CreditLimit < 500)
             // {
             //     return false;
             // }
 
-            UserDataAccess.AddUser(user);
+            // UserDataAccess.AddUser(user);
             return true;
         }
 
