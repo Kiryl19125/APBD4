@@ -9,7 +9,7 @@ namespace LegacyApp
         /// <summary>
         /// Simulating database
         /// </summary>
-        private readonly Dictionary<string, int> _database =
+        private static readonly Dictionary<string, int> _database =
             new Dictionary<string, int>()
             {
                 {"Kowalski", 200},
@@ -28,7 +28,7 @@ namespace LegacyApp
         /// This method is simulating contact with remote service which is used to get info about someone's credit limit
         /// </summary>
         /// <returns>Client's credit limit</returns>
-        internal int GetCreditLimit(string lastName, DateTime dateOfBirth)
+        public static int GetCreditLimit(string lastName, DateTime dateOfBirth)
         {
             int randomWaitingTime = new Random().Next(3000);
             Thread.Sleep(randomWaitingTime);
