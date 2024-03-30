@@ -19,7 +19,7 @@ namespace LegacyApp
             return false;
         }
 
-        private bool CheckNameAndSurname(string firstName, string lastName)
+        public bool CheckNameAndSurname(string firstName, string lastName)
         {
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
             {
@@ -29,9 +29,9 @@ namespace LegacyApp
             return true;
         }
 
-        private bool CheckEmail(string email)
+        public bool CheckEmail(string email)
         {
-            if (!email.Contains("@") && !email.Contains("."))
+            if (!email.Contains("@") || !email.Contains("."))
             {
                 return false;
             }
@@ -39,7 +39,7 @@ namespace LegacyApp
             return true;
         }
 
-        private int CalculateAge(DateTime dateOfBirth)
+        public int CalculateAge(DateTime dateOfBirth)
         {
             var now = DateTime.Now;
             int age = now.Year - dateOfBirth.Year;
@@ -48,7 +48,7 @@ namespace LegacyApp
             return age;
         }
 
-        private bool ValidateAge(int age)
+        public bool ValidateAge(int age)
         {
             if (age < 21)
             {
